@@ -19,7 +19,7 @@ ExtractTextPlugin.prototype.mergeNonInitialChunks = function(chunk, intoChunk, c
 	if(!intoChunk) {
 		checkedChunks = [];
 		chunk.chunks.forEach(function(c) {
-			if(c.initial) return;
+			if(!c || (c && c.initial)) return;
 			this.mergeNonInitialChunks(c, chunk, checkedChunks);
 		}, this);
 	} else if(checkedChunks.indexOf(chunk) < 0) {
